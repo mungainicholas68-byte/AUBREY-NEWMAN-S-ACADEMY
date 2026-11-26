@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Welcome to Aubrey Newmans Academy. Discover our school, academics and admissions.">
+  <title>Aubrey Newmans Academy</title>
+  <style>
+    :root {
+      --blue: #123b70;
+      --deep-blue: #0a2342;
+      --red: #c62828;
+      --green: #008000;
+      --gold: #d4af37;
+      --white: #ffffff;
+      --ink: #243247;
+      --pale: #f4f7fb;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      position: relative;
+    }
+    /* The watermark uses your uploaded logo file. Save the logo in the
+       same GitHub folder as this file and name it school-logo.png. */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("school-logo.png") center 54% / min(55vw, 520px) auto no-repeat;
+      opacity: .055;
+      pointer-events: none;
+      z-index: -1;
+    }
+    a { color: inherit; }
+    .topbar {
+      background: var(--deep-blue);
+      color: white;
+      text-align: center;
+      padding: 7px 16px;
+      font-size: .9rem;
+    }
+    header {
+      background: var(--blue);
+      color: white;
+      border-bottom: 5px solid var(--gold);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-wrap {
+      max-width: 1150px;
+      margin: auto;
+      padding: 13px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      text-decoration: none;
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: 1px;
+      font-size: clamp(1.05rem, 2.5vw, 1.5rem);
+    }
+    .brand .aubrey { color: white; }
+    .brand .newmans { color: #43d17b; }
+    .brand .academy { color: #ff5b5b; }
+    nav { display: flex; flex-wrap: wrap; gap: 15px; }
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: 700;
+      font-size: .92rem;
+    }
+    nav a:hover { color: var(--gold); }
+    .hero {
+      min-height: 440px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 70px 20px;
+      color: white;
+      background:
+        linear-gradient(90deg, rgba(10,35,66,.88), rgba(18,59,112,.68)),
+        url("school-photo.jpg") center/cover no-repeat;
+    }
+    .hero-content { max-width: 800px; }
+    .hero h1 { font-size: clamp(2.1rem, 6vw, 4rem); line-height: 1.12; margin: 0 0 18px; }
+    .hero p { font-size: 1.15rem; margin: 0 auto 25px; max-width: 680px; }
+    .btn {
+      display: inline-block;
+      background: var(--red);
+      color: white;
+      padding: 12px 22px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 2px solid var(--gold);
+    }
+    .btn:hover { background: #a91e1e; }
+    main { max-width: 1100px; margin: auto; padding: 20px; }
+    section { padding: 48px 0; scroll-margin-top: 90px; }
+    section h2 {
+      color: var(--blue);
+      font-size: 2rem;
+      margin: 0 0 15px;
+      padding-bottom: 9px;
+      border-bottom: 3px solid var(--gold);
+      display: inline-block;
+    }
+    .lead { font-size: 1.08rem; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+    .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid #dce4ef;
+      border-top: 4px solid var(--gold);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(10,35,66,.07);
+    }
+    .card h3 { color: var(--blue); margin-top: 0; }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .photo-grid img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 3px solid var(--gold);
+      background: var(--pale);
+    }
+    .admissions {
+      background: var(--pale);
+      border-left: 5px solid var(--red);
+      padding: 24px;
+      border-radius: 7px;
+    }
+    form { display: grid; gap: 12px; max-width: 650px; }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #b9c6d6;
+      border-radius: 5px;
+      font: inherit;
+      background: white;
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    button {
+      width: fit-content;
+      cursor: pointer;
+      font: inherit;
+    }
+    footer {
+      background: var(--deep-blue);
+      color: white;
+      text-align: center;
+      padding: 28px 18px;
+      border-top: 5px solid var(--gold);
+    }
+    footer p { margin: 5px; }
+    @media (max-width: 720px) {
+      .nav-wrap { flex-direction: column; }
+      nav { justify-content: center; gap: 10px 14px; }
+      .hero { min-height: 380px; }
+      body::before { background-size: min(78vw, 420px) auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">WELCOME TO AUBREY NEWMANS ACADEMY</div>
+
+  <header>
+    <div class="nav-wrap">
+      <a class="brand" href="#home" aria-label="Aubrey Newmans Academy home">
+        <span class="aubrey">AUBREY</span>
+        <span class="newmans"> NEWMANS</span><br>
+        <span class="academy">ACADEMY</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#history">Our History</a>
+        <a href="#academics">Academics</a>
+        <a href="#admissions">Admissions</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Learning Today, Leading Tomorrow</h1>
+      <p>Welcome to Aubrey Newmans Academy — a place where learners are encouraged to grow, discover their talents and build a bright future.</p>
+      <a class="btn" href="#admissions">Enquire About Admission</a>
+    </div>
+  </section>
+
+  <main>
+    <section id="about">
+      <h2>About Our School</h2>
+      <p class="lead">Aubrey Newmans Academy is committed to providing a supportive learning environment where every learner can develop academically, socially and personally.</p>
+      <div class="cards">
+        <article class="card">
+          <h3>Our Vision</h3>
+          <p>To nurture confident, responsible and capable learners who are prepared to make a positive difference.</p>
+        </article>
+        <article class="card">
+          <h3>Our Mission</h3>
+          <p>To provide quality education through dedicated teaching, a caring environment and opportunities for every learner.</p>
+        </article>
+        <article class="card">
+          <h3>Our Values</h3>
+          <p>Integrity, respect, discipline, curiosity, responsibility and excellence.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="history">
+      <h2>Our History</h2>
+      <p>Every school has a story. Aubrey Newmans Academy continues to build its story through the commitment of its learners, teachers, families and community.</p>
+      <p><strong>School note:</strong> Replace this paragraph with the school's approved founding year, founder's name and history.</p>
+    </section>
+
+    <section id="academics">
+      <h2>Academics</h2>
+      <p>We aim to make learning engaging, meaningful and supportive of each learner's potential.</p>
+      <div class="cards">
+        <article class="card">
+          <h3>Classroom Learning</h3>
+          <p>A strong foundation in essential subjects, knowledge and practical skills.</p>
+        </article>
+        <article class="card">
+          <h3>Talent Development</h3>
+          <p>Encouraging learners to explore creativity, sport, leadership and other interests.</p>
+        </article>
+        <article class="card">
+          <h3>Guidance and Support</h3>
+          <p>Promoting positive behaviour, confidence and a love of lifelong learning.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="admissions">
+      <h2>Admissions</h2>
+      <div class="admissions">
+        <p>We welcome enquiries from families interested in Aubrey Newmans Academy. Contact the school to ask about available places, requirements, fees and the admission process.</p>
+        <a class="btn" href="#contact">Contact the School</a>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <h2>School Gallery</h2>
+      <p>Replace these sample image filenames with photographs of your school. Upload the photographs to the same GitHub repository as this HTML file.</p>
+      <div class="photo-grid">
+        <img src="school-photo.jpg" alt="Aubrey Newmans Academy school photograph">
+        <img src="classroom.jpg" alt="Learners in a classroom">
+        <img src="school-activity.jpg" alt="A school activity">
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>We would be happy to hear from you. Add the school's official telephone number, email address and physical location below.</p>
+      <div class="cards">
+        <article class="card">
+          <h3>Phone</h3>
+          <p>Add official school phone number</p>
+        </article>
+        <article class="card">
+          <h3>Email</h3>
+          <p>Add official school email address</p>
+        </article>
+        <article class="card">
+          <h3>Location</h3>
+          <p>Add school address or location</p>
+        </article>
+      </div>
+      <h3>Send an Enquiry</h3>
+      <form onsubmit="event.preventDefault(); alert('Thank you for your enquiry. This demonstration form is not connected to the school email yet. Please use the official contact details.');">
+        <label for="name">Your name</label>
+        <input id="name" name="name" type="text" placeholder="Enter your name" required>
+        <label for="email">Your email</label>
+        <input id="email" name="email" type="email" placeholder="Enter your email" required>
+        <label for="message">Your message</label>
+        <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+        <button class="btn" type="submit">Send Enquiry</button>
+      </form>
+      <p><small>Note: This is a demonstration form. It does not send messages until it is connected to a form service or the school's email system.</small></p>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>AUBREY NEWMANS ACADEMY</strong></p>
+    <p>Learning Today, Leading Tomorrow</p>
+    <p>&copy; <span id="year"></span> Aubrey Newmans Academy. All rights reserved.</p>
+  </footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
